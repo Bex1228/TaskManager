@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <size
-        android:width="8dp"
+        android:width="16dp"
         android:height="8dp"/>
     <corners
         android:radius="24sp"/>
     <solid
-        android:color="#02CBE4"/>
+        android:color="#E91E63"/>
 
 </shape>

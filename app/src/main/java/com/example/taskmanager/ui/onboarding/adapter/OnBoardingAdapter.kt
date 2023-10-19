@@ -9,22 +9,11 @@ import com.example.taskmanager.databinding.ItemOnboardingBinding
 import com.example.taskmanager.model.OnBoarding
 import com.example.taskmanager.utils.loadImage
 
-class OnBoardingAdapter(private val onClick: ()-> Unit) : Adapter<OnBoardingAdapter.OnBoardingViewHolder>(){
+class OnBoardingAdapter(private val list : ArrayList<OnBoarding>,
+                        private val onClick: ()-> Unit)
+    : Adapter<OnBoardingAdapter.OnBoardingViewHolder>(){
 
-    private val list = arrayListOf<OnBoarding>(
-        OnBoarding("Добро пожаловать в мир рыбалки",
-            "Откройте для себя увлекательный мир рыбалки, исследуйте" +
-                    " потаенные места и ловите лосось, как настоящий профессионал.",
-             "https://gas-kvas.com/uploads/posts/2023-01/1674058510_gas-kvas-com-p-risunok-na-temu-ribalka-2.png"),
-        OnBoarding("Профессиональное снаряжение",
-            "Наше приложение предоставляет доступ к лучшему рыболовному снаряжению," +
-                    " чтобы ваши рыболовные походы были более успешными и удовольствие.",
-            "https://images.prom.ua/1461467566_w640_h640_saharnaya-kartinka-rybalka.jpg"),
-        OnBoarding("Создайте воспоминания",
-            "Поймайте рыбу в компании друзей, создайте незабываемые моменты" +
-                    " и делись историями с нашим рыбацким сообществом.",
-            "https://www.factroom.ru/wp-content/uploads/2018/01/tofish6fdsr5-1.png")
-    )
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnBoardingViewHolder {
     return OnBoardingViewHolder(
