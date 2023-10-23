@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.taskmanager.R
+import com.example.taskmanager.data.local.Pref
 import com.example.taskmanager.databinding.FragmentOnBoardingBinding
 import com.example.taskmanager.model.OnBoarding
 import com.example.taskmanager.ui.onboarding.adapter.OnBoardingAdapter
@@ -21,8 +22,9 @@ class OnBoardingFragment : Fragment() {
     private var list = arrayListOf<OnBoarding>(
         OnBoarding(
             "Добро пожаловать в мир рыбалки",
-            "Откройте для себя увлекательный мир рыбалки, исследуйте" +
-                    " потаенные места и ловите лосось, как настоящий профессионал.",
+            "Откройте для себя увлекательный мир \n" +
+                    "рыбалки, исследуйте потаенные места и \n" +
+                    "ловите лосось, как настоящий профессионал",
             "https://gas-kvas.com/uploads/posts/2023-01/1674058510_gas-kvas-com-p-risunok-na-temu-ribalka-2.png"
         ),
         OnBoarding(
@@ -41,6 +43,10 @@ class OnBoardingFragment : Fragment() {
 
 
     private val adapter = OnBoardingAdapter(list, this::onCLick)
+
+    private  val pref by lazy {
+        Pref(requireActivity())
+    }
 
 
     override fun onCreateView(
@@ -93,6 +99,7 @@ class OnBoardingFragment : Fragment() {
         }
     }
     private fun onCLick() {
+        pref.onShowed()
         findNavController().navigateUp()
     }
 }
