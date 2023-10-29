@@ -41,13 +41,11 @@ class OnBoardingFragment : Fragment() {
         )
     )
 
-
     private val adapter = OnBoardingAdapter(list, this::onCLick)
 
-    private  val pref by lazy {
+    private val pref by lazy {
         Pref(requireActivity())
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,15 +55,12 @@ class OnBoardingFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewpager.adapter = adapter
 
         val indicatorSize = resources.getDimensionPixelSize(R.dimen.indicator_size)
         val indicatorMargin = resources.getDimensionPixelSize(R.dimen.indicator_margin)
-
-
 
         for (i in 0 until list.size) {
             val indicator = View(requireContext())
@@ -76,21 +71,18 @@ class OnBoardingFragment : Fragment() {
             binding.indicatorsLayout.addView(indicator)
         }
         binding.viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 updateIndicators(position)
             }
         })
-
     }
+
     private fun updateIndicators(position: Int) {
         val indicatorsLayout = binding.indicatorsLayout
 
         for (i in 0 until indicatorsLayout.childCount) {
             val indicator = indicatorsLayout.getChildAt(i) as View
-
-
             if (i == position) {
                 indicator.setBackgroundResource(R.drawable.on_boarding_indicator_active)
             } else {
@@ -98,6 +90,7 @@ class OnBoardingFragment : Fragment() {
             }
         }
     }
+
     private fun onCLick() {
         pref.onShowed()
         findNavController().navigateUp()

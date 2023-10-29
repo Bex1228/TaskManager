@@ -19,13 +19,14 @@ class ProfileFragment : Fragment() {
     private val pref by lazy {
         Pref(requireContext())
     }
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-        if (it.resultCode == Activity.RESULT_OK && it.data != null){
-            val uri = it.data?.data
-            pref.setImage(uri.toString())
-            binding.profileImage.loadImage(uri.toString())
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK && it.data != null) {
+                val uri = it.data?.data
+                pref.setImage(uri.toString())
+                binding.profileImage.loadImage(uri.toString())
+            }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +40,6 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         saveAndGetName()
         saveAndGetImage()
-
-
     }
 
     private fun saveAndGetImage() {
@@ -59,9 +58,4 @@ class ProfileFragment : Fragment() {
             pref.saveName(binding.etName.text.toString())
         }
     }
-
-
-
-
-
 }

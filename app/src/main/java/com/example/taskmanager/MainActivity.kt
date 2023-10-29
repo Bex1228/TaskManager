@@ -32,15 +32,14 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         if (!pref.isShow())
-        navController.navigate(R.id.onBoardingFragment)
-
+            navController.navigate(R.id.onBoardingFragment)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_dashboard,
                 R.id.navigation_notifications,
-                    R.id.taskFragment,
+                R.id.taskFragment,
                 R.id.navigation_profile
             )
         )
@@ -48,16 +47,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.onBoardingFragment){
+            if (destination.id == R.id.onBoardingFragment) {
                 navView.isVisible = false
                 supportActionBar?.hide()
-            } else{
+            } else {
                 navView.isVisible = true
                 supportActionBar?.show()
             }
         }
-
-
-
     }
 }
