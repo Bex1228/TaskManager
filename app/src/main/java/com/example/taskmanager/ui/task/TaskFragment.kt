@@ -17,9 +17,8 @@ import kotlin.concurrent.timerTask
 
 class TaskFragment : Fragment() {
 
-
     private lateinit var binding: FragmentTaskBinding
-    private var task:Task? = null
+    private var task: Task? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +36,9 @@ class TaskFragment : Fragment() {
 
     private fun initListeners() {
         binding.btnSave.setOnClickListener {
-            if (task == null &&binding.etTitle.text.isNotEmpty()){
+            if (task == null && binding.etTitle.text.isNotEmpty()) {
                 saveTask()
-            } else if(binding.etTitle.text.isNotEmpty()){
+            } else if (binding.etTitle.text.isNotEmpty()) {
                 updateTask()
             }
             findNavController().navigateUp()
@@ -51,7 +50,7 @@ class TaskFragment : Fragment() {
             title = binding.etTitle.text.toString(),
             desc = binding.etDesc.text.toString()
         )
-        if (data != null && data.title?.isNotEmpty() == true){
+        if (data != null && data.title?.isNotEmpty() == true) {
             App.db.taskDao().update(data)
         }
     }
@@ -65,11 +64,15 @@ class TaskFragment : Fragment() {
     }
 
     private fun getData() {
-        task = arguments?.getSerializable("TASK_KEY") as? Task
-        if (task != null){
+        task = arguments?.getSerializable(TASK_KEY) as? Task
+        if (task != null) {
             binding.etTitle.setText(task?.title)
             binding.etDesc.setText(task?.desc)
             binding.btnSave.text = getString(R.string.udpate)
         }
     }
+    companion object{
+        const val TASK_KEY = "TASK_KEY"
+    }
+
 }

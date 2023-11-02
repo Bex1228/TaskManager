@@ -13,6 +13,7 @@ import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentHomeBinding
 import com.example.taskmanager.model.Task
 import com.example.taskmanager.ui.home.adapter.TaskAdapter
+import com.example.taskmanager.ui.task.TaskFragment.Companion.TASK_KEY
 
 class HomeFragment : Fragment() {
 
@@ -52,7 +53,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onClick(task: Task) {
-        findNavController().navigate(R.id.taskFragment, bundleOf("TASK_KEY" to task))
+        findNavController().navigate(R.id.taskFragment, bundleOf(TASK_KEY to task))
     }
 
     private fun setData() {
